@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-app
+spec:
+  containers:
+  - name: my-app
+    image: localhost:32000/app-flask:latest
+    livenessProbe:
+      httpGet:
+        path: /
+        port: 3000
+      initialDelaySeconds: 10
+      timeoutSeconds: 2
+      periodSeconds: 5
+      failureThreshold: 1
+    readinessProbe:
+      httpGet:
+        path: /
+        port: 3000
+      initialDelaySeconds: 2
+      periodSeconds: 5
