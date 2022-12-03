@@ -8,7 +8,6 @@ def hello_world():
     return "ola mundo"
 
 #linux      curl --data '{"usuario":"lohann","senha":"123"}' -H "Content-Type: application/json" -X POST localhost:3000/registrar
-#linux      curl --data '{"usuario":"aluno","senha":"123"}' -H "Content-Type: application/json" -X POST localhost:3000/login
 #windows    curl.exe --data '{\"usuario\":\"lohann\",\"senha\":\"123\"}' -H "Content-Type:application/json" -X POST localhost:3000/registrar
 
 @app.route("/registrar", methods=['POST'])
@@ -25,6 +24,7 @@ if __name__ == "__main__":
     users_data = {}
     app.run(host="0.0.0.0", port=3000, debug=True)
 
+#linux      curl --data '{"usuario":"aluno","senha":"123"}' -H "Content-Type: application/json" -X POST localhost:3000/login
 @app.route("/login", methods=['POST'])
 def login():
     global users_data    
