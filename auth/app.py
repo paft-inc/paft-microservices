@@ -1,4 +1,4 @@
-from flask import Flask, request, json
+from flask import Flask, request, json, Response
 
 app = Flask(__name__)
 
@@ -17,6 +17,18 @@ def registrar():
                                   status=200,
                                   mimetype='application/json')
     return retorno
+
+@app.route('/health', methods=['GET'])
+def health():
+    return app.response_class(
+       response=json.dumps({"status": "OK"}),
+       status=200,
+       mimetype='application/json'
+    )
+
+
+
+
 
 if __name__ == "__main__":
     users_data = {}
