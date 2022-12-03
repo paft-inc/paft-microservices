@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type= "text/css" href="{{ url_for('static', filename='./styles/style.css')}}">
+    <title>PAFT Login</title>
+</head>
+<body>
+    <fieldset>
+    <legend><h1>Login</h1></legend>
+        <div>
+            <form action="registrar" method="post">
+                <label for="usuario">Usuario:</label>
+                <input type="text" name="usuario" placeholder="Digite o usuario" id="usuario" required><br>
+                <label for="senha">Senha:</label>
+                <input type="password" name="senha" placeholder="Digite a senha" id="senha" required><br>
+                <input type="submit" value="Cadastrar">            
+            </form>
+        </div>
+    </fieldset>
+    <div>
+        <h2>{{ mensagem }}</h2>
+    </div>
+</body>
+</html>

@@ -12,3 +12,6 @@ A aplicação consiste em um sistema de gerenciamento de tarefas, onde é possí
 ## Requisitos
 
 - [ ] O Dynatrace deve ser instalado na nuvem pública do Google Cloud Platform (GCP).
+
+## License
+paft-microservices é publicado sobre a licença [MIT License](https://github.com/paft-inc/paft-microservices/blob/master/LICENSE).

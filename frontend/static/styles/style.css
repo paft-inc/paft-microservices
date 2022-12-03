@@ -1,0 +1,12 @@
+body {
+  background-color: rgb(179, 179, 179);
+  margin: 10%;
+  font-family: "Roboto", sans-serif;
+  text-align: center;
+  font-size: 2em;
+
+}
+
+input {
+  height: 2em;
+}
