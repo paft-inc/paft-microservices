@@ -36,4 +36,4 @@ def login():
         return app.response_class(body={"token":token_jwt}, headers='application/json', status=200)
     
     else:
-        return app.response_class(body={"erro":"credênciais inválidas"}, headers='application/json', status=403)auth
+        return app.response_class(body={"erro":"credênciais inválidas"}, headers='application/json', status=403)
