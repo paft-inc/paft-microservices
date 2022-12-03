@@ -29,7 +29,6 @@ def todos():
     response = app.response_class(status=200, response= json.dumps(todo))
     response.headers['Content-Type'] = 'application/json'
     return response
-    
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=3000, debug=True)
