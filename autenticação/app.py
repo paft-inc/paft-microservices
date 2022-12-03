@@ -34,7 +34,7 @@ def login():
     
     if users_data[usuario] == senha: 
         token_jwt = jwt.encode({"usuario": usuario}, "secret", algorithm="HS256")
-        return app.response_class(body={"token":token_jwt}, headers='application/json', status=200)
+        return app.response_class(response=json.dumps({"token": token_jwt}), headers='application/json', status=200)
     
     else:
-        return app.response_class(body={"erro":"credênciais inválidas"}, headers='application/json', status=403)
+        return app.response_class(body=json.dumps({"erro": "credênciais inválidas"}), headers='application/json', status=403)
