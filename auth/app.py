@@ -1,6 +1,4 @@
-from flask import Flask, request, json, Response
-import jwt
-import os
+from flask import Flask, request, json, Response, jwt, op
 
 app = Flask(__name__)
 
@@ -17,11 +15,6 @@ def registrar():
                                   mimetype='application/json')
     return retorno
 
-if __name__ == "__main__":
-    users_data = {}
-    porta = os.environ.get("AUTH_PORT", 3000)
-    app.run(host="0.0.0.0", port=porta, debug=True)
-
 #linux      curl --data '{"usuario":"aluno","senha":"123"}' -H "Content-Type: application/json" -X POST localhost:3000/login
 @app.route("/login", methods=['POST'])
 def login():
@@ -36,3 +29,16 @@ def login():
     
     else:
         return app.response_class(body=json.dumps({"erro": "credênciais inválidas"}), headers='application/json', status=403)
+
+@app.route('/health', methods=['GET'])
+def health():
+    return app.response_class(
+       response=json.dumps({"status": "OK"}),
+       status=200,
+       mimetype='application/json'
+    )
+    
+ if __name__ == "__main__":
+    users_data = {}
+    porta = os.environ.get("AUTH_PORT", 3000)
+    app.run(host="0.0.0.0", port=porta, debug=True)
