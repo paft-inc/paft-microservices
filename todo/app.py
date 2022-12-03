@@ -5,11 +5,6 @@ import uuid
 app = Flask(__name__)
 lista_todos = {}
 
-@app.route("/")
-def hello_world():
-    return "ola mundo"
-
-
 @app.route("/todos", methods=['POST'])
 def todos():
 
@@ -37,5 +32,4 @@ def todos():
     
 
 if __name__ == "__main__":
-
     app.run(host="0.0.0.0", port=3000, debug=True)
