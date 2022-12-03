@@ -7,7 +7,7 @@ def health():
     return app.response_class(
        response=json.dumps({"status": "OK"}),
        status=200,
-       content-type='application/json'
+       mimetype='application/json'
     )
     
 if __name__ == "__main__":
