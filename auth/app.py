@@ -31,7 +31,7 @@ def login():
     usuario = data['usuario']
     senha = data['senha']
     
-    if user_data[usuario] == senha: 
+    if users_data[usuario] == senha: 
         token_jwt = jwt.encode({"usuario": "aluno"}, "secret", algorithm="HS256")
         return app.response_class(body={"token":token_jwt}, headers='application/json', status=200)
     
