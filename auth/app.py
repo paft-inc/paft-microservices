@@ -16,10 +16,6 @@ def registrar():
                                   mimetype='application/json')
     return retorno
 
-if __name__ == "__main__":
-    users_data = {}
-    app.run(host="0.0.0.0", port=3000, debug=True)
-
 #linux      curl --data '{"usuario":"aluno","senha":"123"}' -H "Content-Type: application/json" -X POST localhost:3000/login
 @app.route("/login", methods=['POST'])
 def login():
@@ -34,3 +30,19 @@ def login():
     
     else:
         return app.response_class(body=json.dumps({"erro": "credênciais inválidas"}), headers='application/json', status=403)
+
+@app.route('/health', methods=['GET'])
+def health():
+    return app.response_class(
+       response=json.dumps({"status": "OK"}),
+       status=200,
+       mimetype='application/json'
+    )
+
+if __name__ == "__main__":
+    users_data = {}
+    app.run(host="0.0.0.0", port=3000, debug=True)
+
+
+
+
