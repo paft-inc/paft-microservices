@@ -3,10 +3,6 @@ import jwt
 
 app = Flask(__name__)
 
-@app.route("/")
-def hello_world():
-    return "ola mundo"
-
 #linux      curl --data '{"usuario":"lohann","senha":"123"}' -H "Content-Type: application/json" -X POST localhost:3000/registrar
 #windows    curl.exe --data '{\"usuario\":\"lohann\",\"senha\":\"123\"}' -H "Content-Type:application/json" -X POST localhost:3000/registrar
 
