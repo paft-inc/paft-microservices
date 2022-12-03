@@ -2,9 +2,9 @@ from flask import Flask, request, Response, render_template
 
 app = Flask(__name__)
 
-@app.route("/health", methods=["GET"])
-def health():
-    return Response("OK",status=200)
+@app.route("/hello")
+def hello_world():
+    return "ola mundo"
 
 @app.route("/", methods=['GET','POST'])
 def cadastro():
