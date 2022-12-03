@@ -26,7 +26,7 @@ def cadastro():
                             status=200,
                             mimetype='text/html')
     return retorno
-# inclusão da variavel de ambiente FRONT_PORT
+    
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=FRONT_PORT, debug=True)
 
