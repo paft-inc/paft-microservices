@@ -1,4 +1,6 @@
-from flask import Flask, request, json, Response, jwt, op
+from flask import Flask, request, json, Response, 
+import jwt
+import os
 
 app = Flask(__name__)
 
