@@ -1,6 +1,9 @@
 from flask import Flask, request, Response, render_template
+import os 
 
 app = Flask(__name__)
+port = os.environ.get("FRONT_PORT", 8080)
+
 
 @app.route("/hello")
 def hello_world():
@@ -22,4 +25,4 @@ def cadastro():
     return retorno
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=3000, debug=True)
+    app.run(host="0.0.0.0", port=FRONT_PORT, debug=True)

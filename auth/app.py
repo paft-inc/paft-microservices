@@ -4,6 +4,11 @@ import os
 
 app = Flask(__name__)
 
+# Dicionario de usuários cadastrados
+users_data = {
+    'aluno': '123'
+}
+
 #linux      curl --data '{"usuario":"lohann","senha":"123"}' -H "Content-Type: application/json" -X POST localhost:3000/registrar
 #windows    curl.exe --data '{\"usuario\":\"lohann\",\"senha\":\"123\"}' -H "Content-Type:application/json" -X POST localhost:3000/registrar
 
@@ -24,13 +29,11 @@ def login():
     data = json.loads(request.data)
     usuario = data['usuario']
     senha = data['senha']
-    
-    if users_data[usuario] == senha: 
+    if usuario in users_data and users_data[usuario] == senha:
         token_jwt = jwt.encode({"usuario": usuario}, "secret", algorithm="HS256")
-        return app.response_class(response=json.dumps({"token": token_jwt}), headers='application/json', status=200)
-    
+        return app.response_class(response=json.dumps({"token": token_jwt}), mimetype='application/json', status=200)
     else:
-        return app.response_class(body=json.dumps({"erro": "credênciais inválidas"}), headers='application/json', status=403)
+        return app.response_class(response=json.dumps({"erro": "credênciais inválidas"}), mimetype='application/json', status=403)
 
 @app.route('/health', methods=['GET'])
 def health():
@@ -39,7 +42,7 @@ def health():
        status=200,
        mimetype='application/json'
     )
-    
+   
  if __name__ == "__main__":
     users_data = {}
     porta = os.environ.get("AUTH_PORT", 3000)
