@@ -1,4 +1,4 @@
-from flask import Flask, request, json, Response, 
+from flask import Flask, request, json, Response
 import jwt
 import os
 
@@ -44,6 +44,5 @@ def health():
     )
    
  if __name__ == "__main__":
-    users_data = {}
     porta = os.environ.get("AUTH_PORT", 3000)
     app.run(host="0.0.0.0", port=porta, debug=True)
