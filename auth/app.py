@@ -42,7 +42,7 @@ def health():
        status=200,
        mimetype='application/json'
     )
-   
+
  if __name__ == "__main__":
     porta = os.environ.get("AUTH_PORT", 3000)
     app.run(host="0.0.0.0", port=porta, debug=True)
