@@ -1,9 +1,17 @@
-from flask import Flask, request, json
+from flask import Flask, request, json, Response
 import jwt
 import uuid
 
 app = Flask(__name__)
 lista_todos = {}
+
+@app.route('/health', methods=['GET'])
+def health():
+    return app.response_class(
+       response=json.dumps({"status": "OK"}),
+       status=200,
+       mimetype='application/json'
+    )
 
 @app.route("/todos", methods=['POST'])
 def todos():
