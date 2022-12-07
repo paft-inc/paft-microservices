@@ -9,6 +9,8 @@ COPY . .
 
 EXPOSE 3000
 
+ENV AUTH_PORT 3000
+
 # Obs: não recomendado para produção
 # mais informações: https://flask.palletsprojects.com/en/2.2.x/deploying/
 CMD [ "python3", "app.py" ]
