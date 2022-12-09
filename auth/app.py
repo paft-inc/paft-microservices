@@ -1,6 +1,4 @@
-from opentelemetry import trace
-from opentelemetry import metrics
-from random import randint
+from opentelemetry import trace, metrics
 from flask import Flask, request, json, Response
 import jwt
 
@@ -44,6 +42,7 @@ def do_registry(request):
                                   mimetype='application/json')
        registryspan.set_attribute("usuario.value", data['usuario'])
        registryspan.set_attribute("senha.value", data['senha'])
+       register_counter.add(1, {"register_counter":0})
        return retorno
 
 #linux      curl --data '{"usuario":"aluno","senha":"123"}' -H "Content-Type: application/json" -X POST localhost:3000/login
