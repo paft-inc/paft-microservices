@@ -46,10 +46,10 @@ def login():
         senha = data['senha']
         if usuario in users_data and users_data[usuario] == senha:
             token_jwt = jwt.encode({"usuario": usuario}, "secret", algorithm="HS256")
-            loginspan.set_attribute("status.value", 200)
+            loginspan.set_attribute("status.value", 200 OK
             return app.response_class(response=json.dumps({"token": token_jwt}), mimetype='application/json', status=200)
         else:
-            loginspan.set_attribute("status.value", 403)
+            loginspan.set_attribute("status.value", 403 Forbidden)
             return app.response_class(response=json.dumps({"erro": "credênciais inválidas"}), mimetype='application/json', status=403)
 
 @app.route('/health', methods=['GET'])
