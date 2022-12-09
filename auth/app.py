@@ -11,11 +11,11 @@ register_counter = meter.create_counter(
         "register_counter",
         description="Number of registrys",
 )
-register_counter = meter.create_counter(
+login_auth_counter = meter.create_counter(
         "login_auth_counter",
         description="Number of sucessfull logins",
 )
-register_counter = meter.create_counter(
+login_refu_counter = meter.create_counter(
         "login_refu_counter",
         description="Number of unsucessfull logins",
 )
