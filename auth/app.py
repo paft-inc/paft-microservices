@@ -34,7 +34,7 @@ users_data = {
 @app.route("/registrar", methods=['POST'])
 def registrar():
 	return str(do_registry(request))
-def do_registry(resquest):
+def do_registry(request):
     with tracer.start_as_current_span("do_registry") as registryspan:
        global users_data    
        data = json.loads(request.data)
@@ -42,27 +42,28 @@ def do_registry(resquest):
        retorno = app.response_class(response="Usuario registrado com sucesso!",
                                   status=200,
                                   mimetype='application/json')
-       registryspan.set_attribute("usuario.value", data)
-       registryspan.set_attribute("senha.value", data)
+       registryspan.set_attribute("usuario.value", data['usuario'])
+       registryspan.set_attribute("senha.value", data['senha'])
        return retorno
 
 #linux      curl --data '{"usuario":"aluno","senha":"123"}' -H "Content-Type: application/json" -X POST localhost:3000/login
 @app.route("/login", methods=['POST'])
 def login():
-        return str(do_login(request))
+       return str(do_login(request))
 def do_login(request):
     with tracer.start_as_current_span("login") as loginspan:
        global users_data
        data = json.loads(request.data)
        usuario = data['usuario']
        senha = data['senha']
-       loginspan.set_attribute("usuario.value", data)
-       loginspan.set_attribute("senha.value", data)
+       loginspan.set_attribute("usuario.value", data['usuario'])
+       loginspan.set_attribute("senha.value", data['senha'])
        if usuario in users_data and users_data[usuario] == senha:
            token_jwt = jwt.encode({"usuario": usuario}, "secret", algorithm="HS256")
-           loginspan.set_attribute("status.value")
+           loginspan.set_attribute("login.value", "OK")
            return app.response_class(response=json.dumps({"token": token_jwt}), mimetype='application/json', status=200)
        else:
+           loginspan.set_attribute("login.value", "ERROR")
            return app.response_class(response=json.dumps({"erro": "credênciais inválidas"}), mimetype='application/json', status=403)
 
 @app.route('/health', methods=['GET'])
